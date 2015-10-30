@@ -1,0 +1,271 @@
+{
+  "get": {
+    "url": "/system/time",
+    "type": "model"
+  },
+  "put": {
+    "url": "/system/time",
+    "type": "model"
+  },
+  "fields": [
+    {
+      "key": "timezone",
+      "type": "select",
+      "templateOptions": {
+        "label": "TIME_FORM_LABEL_TIMEZONE",
+        "options": [
+          {
+            "label": "INTERNATIONAL_DATE_LINE_WEST",
+            "value": "-12:00,0"
+          },
+          {
+            "label": "MIDWAY_ISLAND_SAMOA",
+            "value": "-11:00,0"
+          },
+          {
+            "label": "HAWAII",
+            "value": "-10:00,0"
+          },
+          {
+            "label": "ALASKA",
+            "value": "-09:00,1"
+          },
+          {
+            "label": "PACIFIC_TIME_US_AND_CANADA",
+            "value": "-08:00,1"
+          },
+          {
+            "label": "ARIZONA",
+            "value": "-07:00,0"
+          },
+          {
+            "label": "MOUNTAIN_TIME_US_AND_CANADA",
+            "value": "-07:00,1"
+          },
+          {
+            "label": "CENTRAL_AMERICA_SASKATCHEWAN",
+            "value": "-06:00,0"
+          },
+          {
+            "label": "CENTRAL_TIME_US_AND_CANADA_GUADALOJARA_MEXICO_CITY",
+            "value": "-06:00,1"
+          },
+          {
+            "label": "INDIANA_BOGOTA_LIMA_QUITO_RIO_BRANCO",
+            "value": "-05:00,0"
+          },
+          {
+            "label": "EASTERN_TIME_US_AND_CANADA",
+            "value": "-05:00,1"
+          },
+          {
+            "label": "ATLANTIC_TIME_CANADA_MANAUS_SANTIAGO",
+            "value": "-04:00,1"
+          },
+          {
+            "label": "CARACAS_LA_PAZ",
+            "value": "-04:00,0"
+          },
+          {
+            "label": "NEWFOUNDLAND",
+            "value": "-03:30,1"
+          },
+          {
+            "label": "GREENLAND_BRASILIA_MONTEVIDEO",
+            "value": "-03:00,1"
+          },
+          {
+            "label": "BUENOS_AIRES_GEORGETOWN",
+            "value": "-03:00,0"
+          },
+          {
+            "label": "MID_ATLANTIC",
+            "value": "-02:00,1"
+          },
+          {
+            "label": "AZORES",
+            "value": "-01:00,1"
+          },
+          {
+            "label": "CAPE_VERDE_IS",
+            "value": "-01:00,0"
+          },
+          {
+            "label": "CASABLANCA_MONROVIA_REYKJAVIK",
+            "value": "-00:00,0"
+          },
+          {
+            "label": "GMT_DUBLIN_EDINBURGH_LISBON_LONDON",
+            "value": "-00:00,1"
+          },
+          {
+            "label": "AMSTERDAM_BERLIN_ROME_VIENNA_PRAGUE_BRUSSELS",
+            "value": "+01:00,1"
+          },
+          {
+            "label": "WEST_CENTRAL_AFRICA",
+            "value": "+01:00,0"
+          },
+          {
+            "label": "AMMAN_ATHENS_ISTANBUL_BEIRUT_CAIRO_JERUSALEM",
+            "value": "+02:00,1"
+          },
+          {
+            "label": "HARARE_PRETORIA",
+            "value": "+02:00,0"
+          },
+          {
+            "label": "BAGHDAD_MOSCOW_ST_PETERSBURG_VOLGOGRAD",
+            "value": "+03:00,1"
+          },
+          {
+            "label": "KUWAIT_RIYADH_NAIROBI_TBILISI",
+            "value": "+03:00,0"
+          },
+          {
+            "label": "TEHRAN",
+            "value": "+03:30,0"
+          },
+          {
+            "label": "ABU_DHADI_MUSCAT",
+            "value": "+04:00,0"
+          },
+          {
+            "label": "BAKU_YEREVAN",
+            "value": "+04:00,1"
+          },
+          {
+            "label": "KABUL",
+            "value": "+04:30,0"
+          },
+          {
+            "label": "EKATERINBURG",
+            "value": "+05:00,1"
+          },
+          {
+            "label": "ISLAMABAD_KARACHI_TASHKENT",
+            "value": "+05:00,0"
+          },
+          {
+            "label": "CHENNAI_KOLKATA_MUMBAI_NEW_DELHI_SRI_JAYAWARDENEPURA",
+            "value": "+05:30,0"
+          },
+          {
+            "label": "KATHMANDU",
+            "value": "+05:45,0"
+          },
+          {
+            "label": "ASTANA_DHAKA",
+            "value": "+06:00,0"
+          },
+          {
+            "label": "ALMATY_NONOSIBIRSK",
+            "value": "+06:00,1"
+          },
+          {
+            "label": "YANGON_RANGOON",
+            "value": "+06:30,0"
+          },
+          {
+            "label": "KRASNOYARSK",
+            "value": "+07:00,1"
+          },
+          {
+            "label": "BANGKOK_HANOI_JAKARTA",
+            "value": "+07:00,0"
+          },
+          {
+            "label": "BEIJING_HONG_KONG_SINGAPORE_TAIPEI",
+            "value": "+08:00,0"
+          },
+          {
+            "label": "IRKUTSK_ULAANBAATAR_PERTH",
+            "value": "+08:00,1"
+          },
+          {
+            "label": "YAKUTSK",
+            "value": "+09:00,1"
+          },
+          {
+            "label": "SEOUL_OSAKA_SAPPORO_TOKYO",
+            "value": "+09:00,0"
+          },
+          {
+            "label": "DARWIN",
+            "value": "+09:30,0"
+          },
+          {
+            "label": "ADELAIDE",
+            "value": "+09:30,1"
+          },
+          {
+            "label": "BRISBANE_GUAM_PORT_MORESBY",
+            "value": "+10:00,0"
+          },
+          {
+            "label": "CANBERRA_MELBOURNE_SYDNEY_HOBART_VLADIVOSTOK",
+            "value": "+10:00,1"
+          },
+          {
+            "label": "MAGADAN_SOLOMON_IS_NEW_CALEDONIA",
+            "value": "+11:00,0"
+          },
+          {
+            "label": "AUCKLAND_WELLINGTON",
+            "value": "+12:00,1"
+          },
+          {
+            "label": "FIJI_KAMCHATKA_MARSHALL_IS",
+            "value": "+12:00,0"
+          },
+          {
+            "label": "NUKUALOFA",
+            "value": "+13:00,0"
+          }
+        ]
+      }
+    },
+    {
+      "key": "ntp.enable",
+      "type": "radio",
+      "templateOptions": {
+        "options": [
+          {
+            "label": "TIME_FORM_LABEL_TIME_MANUAL",
+            "value": 0
+          },
+          {
+            "label": "TIME_FORM_LABEL_TIME_AUTO",
+            "value": 1
+          }
+        ]
+      }
+    },
+    {
+      "key": "time",
+      "type": "datetimepicker",
+      "hideExpression": "!!model.ntp.enable"
+    },
+    {
+      "key": "ntp.server",
+      "type": "input",
+      "templateOptions": {
+        "label": "TIME_FORM_LABEL_TIME_SERVER",
+        "required": true
+      },
+      "hideExpression": "!model.ntp.enable"
+    },
+    {
+      "key": "ntp.interval",
+      "type": "number",
+      "templateOptions": {
+        "label": "TIME_FORM_LABEL_TIME_INTERVAL",
+        "required": true,
+        "min": 0,
+        "max": null
+      },
+      "hideExpression": "!model.ntp.enable"
+    }
+  ]
+}
+
