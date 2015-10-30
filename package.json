@@ -2,12 +2,12 @@
   "name": "sanji-time-ui",
   "version": "0.0.0-semantic-released",
   "main": "index",
-  "czConfig": {
-    "path": "node_modules/cz-conventional-changelog"
-  },
   "config": {
     "ghooks": {
       "pre-commit": ""
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
     }
   },
   "scripts": {
@@ -39,7 +39,7 @@
     "html-webpack-plugin": "~1.6.1",
     "json-loader": "~0.5.3",
     "isparta-loader": "~1.0.0",
-    "istanbul": "~0.3.22",
+    "istanbul": "~0.4.0",
     "karma": "~0.13.10",
     "karma-chai-plugins": "~0.6.0",
     "karma-coverage": "~0.5.2",
@@ -55,7 +55,7 @@
     "node-sass": "~3.4.1",
     "phantomjs": "~1.9.18",
     "raw-loader": "~0.5.1",
-    "sass-loader": "~3.0.0",
+    "sass-loader": "~3.1.1",
     "semantic-release": "~4.3.5",
     "style-loader": "~0.13.0",
     "url-loader": "~0.5.6",
