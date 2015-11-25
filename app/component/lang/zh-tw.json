@@ -1,4 +1,6 @@
 {
+  "TIME": "時間",
+  "TIME_FORM_SETTING": "設定",
   "TIME_FORM_LABEL_TIMEZONE": "時區",
   "INTERNATIONAL_DATE_LINE_WEST": "(-12:00) 國際日期變更線以西",
   "MIDWAY_ISLAND_SAMOA": "(-11:00) 中途島，薩摩亞群島",

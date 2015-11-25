@@ -1,4 +1,6 @@
 {
+  "TIME": "Time",
+  "TIME_FORM_SETTING": "Setting",
   "TIME_FORM_LABEL_TIMEZONE": "Timezone",
   "INTERNATIONAL_DATE_LINE_WEST": "(-12:00) Internation Date Line West",
   "MIDWAY_ISLAND_SAMOA": "(-11:00) Midway Island, Samoa",
