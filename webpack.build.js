@@ -12,7 +12,6 @@ config.entry = {
 };
 config.output.filename = 'sanji-time-ui.js';
 config.output.library = 'sjTime';
-config.output.libraryTarget = 'umd';
 config.externals = {
   'sanji-core-ui': 'sjCore'
 };
