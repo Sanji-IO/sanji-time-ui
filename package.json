@@ -1,7 +1,7 @@
 {
   "name": "sanji-time-ui",
-  "version": "1.0.0",
-  "main": "index",
+  "version": "1.0.1",
+  "main": "dist/sanji-time-ui",
   "config": {
     "ghooks": {
       "pre-commit": ""
