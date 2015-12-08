@@ -890,7 +890,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this2 = this;
 	
 	      var toPath = this.pathToRegexp.compile(config.get.url);
-	      return this.rest.get(toPath(),  false ? 'http://private-d8e84-sanjigeneric.apiary-mock.com' : undefined).then(function (res) {
+	      return this.rest.get(toPath(),  false ? { basePath: 'http://private-d8e84-sanjigeneric.apiary-mock.com' } : undefined).then(function (res) {
 	        _this2.data = _this2._transform(res.data);
 	      })['catch'](function (err) {
 	        _this2.exception.catcher('[TimeService] Get data error.')(err);
@@ -904,7 +904,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      var toPath = this.pathToRegexp.compile(config.put.url);
 	      var path = undefined !== data.content.id ? toPath({ id: data.content.id }) : toPath();
-	      return this.rest.put(path, data.content, data.formOptions.files,  false ? 'http://private-d8e84-sanjigeneric.apiary-mock.com' : undefined)['catch'](function (err) {
+	      return this.rest.put(path, data.content, data.formOptions.files,  false ? { basePath: 'http://private-d8e84-sanjigeneric.apiary-mock.com' } : undefined)['catch'](function (err) {
 	        _this3.exception.catcher('[TimeService] Update data error.')(err);
 	        return _this3.$q.reject();
 	      });
