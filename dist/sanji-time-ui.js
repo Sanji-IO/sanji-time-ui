@@ -922,8 +922,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 12 */
 /***/ function(module, exports) {
 
-	var v1="<md-content>\n    <form ng-submit=\"vm.save(vm.data)\" role=\"form\" layout=\"column\" layout-padding novalidate>\n      <formly-form\n        model=\"vm.data.content\"\n        fields=\"vm.data.fields\"\n        options=\"vm.data.formOptions\"\n        form=\"vm.form\">\n        <div layout layout-align=\"end center\">\n          <md-button type=\"submit\" class=\"md-raised md-primary\" ng-disabled=\"vm.form.$invalid\">\n            <sapn translate=\"TIME_FORM_SAVE\"></span>\n          </md-button>\n        </div>\n      </formly-form>\n    </form>\n  </md-content>";
-	window.angular.module(["ng"]).run(["$templateCache",function(c){c.put("sanji-time-edit.tpl.html", v1)}]);
+	var angular=window.angular,ngModule;
+	try {ngModule=angular.module(["ng"])}
+	catch(e){ngModule=angular.module("ng",[])}
+	var v1="<form ng-submit=\"vm.save(vm.data)\" role=\"form\" layout=\"column\" layout-padding novalidate>\n    <formly-form\n      model=\"vm.data.content\"\n      fields=\"vm.data.fields\"\n      options=\"vm.data.formOptions\"\n      form=\"vm.form\">\n      <div layout layout-align=\"end center\">\n        <md-button type=\"submit\" class=\"md-raised md-primary\" ng-disabled=\"vm.form.$invalid\">\n          <sapn translate=\"TIME_FORM_SAVE\"></span>\n        </md-button>\n      </div>\n    </formly-form>\n  </form>";
+	ngModule.run(["$templateCache",function(c){c.put("sanji-time-edit.tpl.html",v1)}]);
 	module.exports=v1;
 
 /***/ },
