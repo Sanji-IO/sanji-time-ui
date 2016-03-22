@@ -12,6 +12,7 @@
       "key": "timezone",
       "type": "select",
       "templateOptions": {
+        "required": true,
         "label": "TIME_FORM_LABEL_TIMEZONE",
         "options": [
           {
@@ -115,11 +116,11 @@
             "value": "+02:00,0"
           },
           {
-            "label": "BAGHDAD_MOSCOW_ST_PETERSBURG_VOLGOGRAD",
+            "label": "BAGHDAD_ST_PETERSBURG_VOLGOGRAD",
             "value": "+03:00,1"
           },
           {
-            "label": "KUWAIT_RIYADH_NAIROBI_TBILISI",
+            "label": "KUWAIT_RIYADH_NAIROBI_TBILISI_MOSCOW",
             "value": "+03:00,0"
           },
           {
@@ -227,18 +228,9 @@
     },
     {
       "key": "ntp.enable",
-      "type": "radio",
+      "type": "switch",
       "templateOptions": {
-        "options": [
-          {
-            "label": "TIME_FORM_LABEL_TIME_MANUAL",
-            "value": 0
-          },
-          {
-            "label": "TIME_FORM_LABEL_TIME_AUTO",
-            "value": 1
-          }
-        ]
+        "label": "TIME_INFO_SYNCHRONIZATION"
       }
     },
     {

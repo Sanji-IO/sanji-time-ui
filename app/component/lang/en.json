@@ -1,5 +1,6 @@
 {
   "TIME": "Time",
+  "TIME_WINDOW_INFO": "Information",
   "TIME_FORM_SETTING": "Setting",
   "TIME_FORM_LABEL_TIMEZONE": "Timezone",
   "INTERNATIONAL_DATE_LINE_WEST": "(-12:00) Internation Date Line West",
@@ -27,8 +28,8 @@
   "WEST_CENTRAL_AFRICA": "(+01:00) West Central Africa",
   "AMMAN_ATHENS_ISTANBUL_BEIRUT_CAIRO_JERUSALEM": "(+02:00) Amman, Athens, Istanbul, Beirut, Cairo, Jerusalem",
   "HARARE_PRETORIA": "(+02:00) Harare, Pretoria",
-  "BAGHDAD_MOSCOW_ST_PETERSBURG_VOLGOGRAD": "(+03:00) Baghdad, Moscow, St. Petersburg, Volgograd",
-  "KUWAIT_RIYADH_NAIROBI_TBILISI": "(+03:00) Kuwait, Riyadh, Nairobi, Tbilisi",
+  "BAGHDAD_ST_PETERSBURG_VOLGOGRAD": "(+03:00) Baghdad, St. Petersburg, Volgograd",
+  "KUWAIT_RIYADH_NAIROBI_TBILISI_MOSCOW": "(+03:00) Kuwait, Riyadh, Nairobi, Tbilisi, Moscow",
   "TEHRAN": "(+03:30) Tehran",
   "ABU_DHADI_MUSCAT": "(+04:00) Abu Dhabi, Muscat",
   "BAKU_YEREVAN": "(+04:00) Baku, Yerevan",
@@ -58,5 +59,9 @@
   "TIME_FORM_LABEL_TIME_AUTO": "Auto",
   "TIME_FORM_LABEL_TIME_SERVER": "Time Server",
   "TIME_FORM_LABEL_TIME_INTERVAL": "Time Interval",
-  "TIME_FORM_SAVE": "Save"
+  "TIME_FORM_SAVE": "Save",
+  "TIME_FORM_SAVE_SUCCESS": "Update data successfully.",
+  "TIME_INFO_SYNCHRONIZATION": "Synchronization",
+  "TIME_INFO_SEC": "sec.",
+  "TIME_INFO_DATE": "Date"
 }

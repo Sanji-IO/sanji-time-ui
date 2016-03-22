@@ -1,7 +1,6 @@
 'use strict';
 
 var webpack = require('webpack');
-var WebpackNotifierPlugin = require('webpack-notifier');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var bourbon = require('node-bourbon').includePaths;
 var config = require('./webpack.config.js');
@@ -12,7 +11,11 @@ config.entry = {
 };
 config.output.filename = 'sanji-time-ui.js';
 config.output.libraryTarget = 'umd';
-config.externals = ['sanji-core-ui'];
+config.output.library = 'sjTime';
+config.externals = [
+  'angular',
+  'sanji-core-ui'
+];
 
 config.module.loaders = [
   {
@@ -23,7 +26,12 @@ config.module.loaders = [
 
 config.plugins.push(
   new ExtractTextPlugin('sanji-time-ui.css'),
-  new WebpackNotifierPlugin({title: 'Webpack'}),
-  new webpack.optimize.DedupePlugin()
+  new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.AggressiveMergingPlugin(),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  })
 );
 module.exports = config;

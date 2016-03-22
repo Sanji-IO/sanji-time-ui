@@ -1,5 +1,6 @@
 {
   "TIME": "時間",
+  "TIME_WINDOW_INFO": "資訊",
   "TIME_FORM_SETTING": "設定",
   "TIME_FORM_LABEL_TIMEZONE": "時區",
   "INTERNATIONAL_DATE_LINE_WEST": "(-12:00) 國際日期變更線以西",
@@ -27,8 +28,8 @@
   "WEST_CENTRAL_AFRICA": "(+01:00) 西中非",
   "AMMAN_ATHENS_ISTANBUL_BEIRUT_CAIRO_JERUSALEM": "(+02:00) 安曼，雅典，伊斯坦布爾，貝魯特，開羅，耶路撒冷",
   "HARARE_PRETORIA": "(+02:00) 哈拉雷，比勒陀利亞",
-  "BAGHDAD_MOSCOW_ST_PETERSBURG_VOLGOGRAD": "(+03:00) 巴格達，莫斯科，聖彼得堡，伏爾加格勒",
-  "KUWAIT_RIYADH_NAIROBI_TBILISI": "(+03:00) 科威特，利雅得，內羅畢，第比利斯",
+  "BAGHDAD_ST_PETERSBURG_VOLGOGRAD": "(+03:00) 巴格達，聖彼得堡，伏爾加格勒",
+  "KUWAIT_RIYADH_NAIROBI_TBILISI_MOSCOW": "(+03:00) 科威特，利雅得，內羅畢，第比利斯，莫斯科",
   "TEHRAN": "(+03:30) 德黑蘭",
   "ABU_DHADI_MUSCAT": "(+04:00) 阿布扎比，馬斯喀特",
   "BAKU_YEREVAN": "(+04:00) 巴庫，埃里溫",
@@ -58,5 +59,9 @@
   "TIME_FORM_LABEL_TIME_AUTO": "自動",
   "TIME_FORM_LABEL_TIME_SERVER": "時間伺服器",
   "TIME_FORM_LABEL_TIME_INTERVAL": "時間間隔",
-  "TIME_FORM_SAVE": "儲存"
+  "TIME_FORM_SAVE": "儲存",
+  "TIME_FORM_SAVE_SUCCESS": "更新資料成功",
+  "TIME_INFO_SYNCHRONIZATION": "同步",
+  "TIME_INFO_SEC": "秒",
+  "TIME_INFO_DATE": "日期"
 }

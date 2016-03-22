@@ -1,0 +1,36 @@
+<script type ="text/ng-template" id="sanji-time-info.tpl.html">
+  <div ng-if="undefined!==vm.data.digitalTime" layout layout-align="center center">
+    <div flex="50">
+      <ds-widget-clock
+        start-time="vm.data.digitalTime"
+        show-analog
+        gmt-offset="vm.data.gmtOffset"></ds-widget-clock>
+    </div>
+  </div>
+  <md-list>
+    <md-list-item>
+      <p class="md-body-2" translate="TIME_INFO_DATE"></p>
+      <span ng-bind="vm.data.content.time | date: 'yyyy-MM-dd'"></span>
+    </md-list-item>
+    <md-list-item>
+      <p class="md-body-2" translate="TIME_FORM_LABEL_TIMEZONE"></p>
+      <span ng-bind="vm.data.content.timezone"></span>
+    </md-list-item>
+    <md-list-item>
+      <p class="md-body-2" translate="TIME_INFO_SYNCHRONIZATION"></p>
+      <span ng-if="vm.data.content.ntp.enable"
+        translate="TIME_FORM_LABEL_TIME_AUTO"></span>
+      <span ng-if="!vm.data.content.ntp.enable"
+        translate="TIME_FORM_LABEL_TIME_MANUAL"></span>
+    </md-list-item>
+    <md-list-item ng-if="vm.data.content.ntp.enable">
+      <p class="md-body-2" translate="TIME_FORM_LABEL_TIME_SERVER"></p>
+      <span ng-bind="vm.data.content.ntp.server"></span>
+    </md-list-item>
+    <md-list-item ng-if="vm.data.content.ntp.enable">
+      <p class="md-body-2" translate="TIME_FORM_LABEL_TIME_INTERVAL"></p>
+      <span ng-bind="vm.data.content.ntp.interval"></span>
+      <span>{{'TIME_INFO_SEC' | translate}}</span>
+    </md-list-item>
+  </md-list>
+</script>

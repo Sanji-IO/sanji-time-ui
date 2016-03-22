@@ -1,8 +1,8 @@
 const $inject = ['$scope', 'sanjiWindowService', 'timeService'];
 const WINDOW_ID = 'sanji-time-ui';
-class TimeContainerController {
+class TimeFormContainerController {
   constructor(...injects) {
-    TimeContainerController.$inject.forEach((item, index) => this[item] = injects[index]);
+    TimeFormContainerController.$inject.forEach((item, index) => this[item] = injects[index]);
 
     this.sanjiWindowMgr = this.sanjiWindowService.get(WINDOW_ID);
     this.data = this.timeService.data;
@@ -28,5 +28,5 @@ class TimeContainerController {
     this.sanjiWindowMgr.promise = this.timeService.update(data);
   }
 }
-TimeContainerController.$inject = $inject;
-export default TimeContainerController;
+TimeFormContainerController.$inject = $inject;
+export default TimeFormContainerController;

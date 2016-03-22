@@ -1,5 +1,4 @@
-<script type ="text/ng-template" id="sanji-time-edit.tpl.html">
-
+<script type ="text/ng-template" id="sanji-time-form.tpl.html">
   <form ng-submit="vm.save(vm.data)" role="form" layout="column" layout-padding novalidate>
     <formly-form
       model="vm.data.content"
@@ -7,11 +6,11 @@
       options="vm.data.formOptions"
       form="vm.form">
       <div layout layout-align="end center">
-        <md-button type="submit" class="md-raised md-primary" ng-disabled="vm.form.$invalid">
+        <md-button type="submit" aria-label="submit"
+        class="md-raised md-primary" ng-disabled="vm.form.$invalid">
           <sapn translate="TIME_FORM_SAVE"></span>
         </md-button>
       </div>
     </formly-form>
   </form>
-
 </script>
