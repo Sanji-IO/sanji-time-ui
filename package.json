@@ -79,6 +79,9 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/Sanji-IO/sanji-time-ui",
+  "peerDependencies": {
+    "angular-clock": "~0.5.1"
+  },
   "dependencies": {
     "angular-clock": "~0.5.1",
     "sanji-core-ui": "~1.15.4"
