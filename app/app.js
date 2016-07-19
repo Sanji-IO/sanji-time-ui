@@ -6,7 +6,7 @@ import './app.scss';
 import angular from 'angular';
 import component from './component';
 
-let app = angular.module('webapp', [component]);
+const app = angular.module('webapp', [component]);
 class AppController {
   constructor($translate, LANG_KEYS) {
     this.$translate = $translate;
@@ -19,3 +19,7 @@ class AppController {
   }
 }
 app.controller('AppController', AppController);
+
+angular.element(document).ready(() => {
+  angular.bootstrap(document.body, ['webapp']);
+});

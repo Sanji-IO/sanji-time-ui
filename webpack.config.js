@@ -2,6 +2,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 var NODE_ENV = process.env.NODE_ENV;
 var BASE_PATH = process.env.BASE_PATH;
 var nodeRoot = path.join(__dirname, 'node_modules');
@@ -28,17 +29,17 @@ var config = {
   },
   module: {
     preLoaders: [
-      {test: /\.js$/, loader: "eslint", exclude: /(node_modules)/}
+      {test: /\.js$/, loader: 'eslint', exclude: /(node_modules)/}
     ],
     loaders: [
       { test: /\.js$/, loader: 'ng-annotate!babel', exclude: /node_modules/ },
       { test: /\.json$/, loader: 'json', exclude: /node_modules/ },
-      { test: /\.html$/, loader: 'ng-cache?prefix=[dir]/[dir]', exclude: /node_modules/ }
+      { test: /\.html$/, loader: 'ng-cache?prefix=[dir]/[dir]', exclude: [/node_modules/, path.join(__dirname, '/app/index.html')] }
     ],
     noParse: []
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new LodashModuleReplacementPlugin,
     new webpack.DefinePlugin({
       __TEST__: 'test' === NODE_ENV,
       __DEV__: 'development' === NODE_ENV,

@@ -1,4 +1,4 @@
-import 'angular-clock.css'
+import 'angular-clock.css';
 
 import angular from 'angular';
 import sjCore from 'sanji-core-ui';
@@ -9,7 +9,7 @@ import sjTimeForm from './form';
 
 import i18nConfig from './component.i18n';
 import TimeService from './component.service';
-import TimeWindowDirective from './component-window.directive';
+import TimeWindowComponent from './window.component';
 
 let app = angular.module('sanji.time', [
   sjCore,
@@ -19,5 +19,5 @@ let app = angular.module('sanji.time', [
 ]);
 app.config(i18nConfig);
 app.service('timeService', TimeService);
-app.directive('sanjiTimeWindow', TimeWindowDirective.directiveFactory);
-export default app = app.name
+app.component('sanjiTimeWindow', TimeWindowComponent);
+export default app = app.name;
