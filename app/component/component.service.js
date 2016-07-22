@@ -1,4 +1,4 @@
-const $inject = ['$q', 'rest', 'exception', '_', 'pathToRegexp', '$filter', 'logger', 'moment'];
+const $inject = ['$q', 'rest', 'exception', 'pathToRegexp', '$filter', 'logger', 'moment'];
 const config = require('./component.resource.json');
 class TimeService {
   constructor(...injects) {

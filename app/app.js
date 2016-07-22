@@ -4,9 +4,10 @@ import 'angular-sanji-window.css';
 import 'toastr.css';
 import './app.scss';
 import angular from 'angular';
-import component from './component';
+import {sjCore} from 'sanji-core-ui';
+import {sjTime} from './component';
 
-const app = angular.module('webapp', [component]);
+const app = angular.module('webapp', [sjTime, sjCore]);
 class AppController {
   constructor($translate, LANG_KEYS) {
     this.$translate = $translate;

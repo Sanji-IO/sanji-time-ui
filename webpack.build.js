@@ -21,11 +21,17 @@ config.externals = [
 config.module.loaders = [
   {
     test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('style-loader', 'css!postcss!sass?includePaths[]=' + bourbon)
+    loader: ExtractTextPlugin.extract({
+      notExtractLoader: 'style-loader',
+      loader: 'css!postcss!sass?includePaths[]=' + bourbon
+    })
   },
   {test: /\.css$/, loader: 'style!css!postcss'}
 ].concat(config.module.loaders);
 
+config.module.postLoaders = [
+  {test: /\.js$/, loader: 'ng-annotate', exclude: /(node_modules)/}
+];
 config.postcss = [ autoprefixer({ browsers: ['last 2 versions'] }) ];
 
 config.plugins.push(
@@ -39,7 +45,8 @@ config.plugins.push(
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       screw_ie8: true,
-      warnings: false
+      warnings: false,
+      dead_code: true
     }
   })
 );
