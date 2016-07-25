@@ -2,7 +2,6 @@
 
 var path = require('path');
 var webpack = require('webpack');
-var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 var NODE_ENV = process.env.NODE_ENV;
 var BASE_PATH = process.env.BASE_PATH;
 var nodeRoot = path.join(__dirname, 'node_modules');
@@ -39,7 +38,6 @@ var config = {
     noParse: []
   },
   plugins: [
-    new LodashModuleReplacementPlugin,
     new webpack.DefinePlugin({
       __TEST__: 'test' === NODE_ENV,
       __DEV__: 'development' === NODE_ENV,
