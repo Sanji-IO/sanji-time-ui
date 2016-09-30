@@ -44,7 +44,7 @@ class TimeService {
     return this.rest.get(toPath(), this.restConfig)
     .then(res => this.data = this._transform(res.data))
     .catch(err => {
-      this.exception.catcher(this.$filter('translate')(this.message.get.error))(err);
+      this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
       return this.$q.reject();
     });
   }
