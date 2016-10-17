@@ -5,7 +5,6 @@ const TimeInfoComponent = {
     data: '<'
   },
   templateUrl: 'sanji-time-info.tpl.html',
-  controller: TimeInfoController,
-  controllerAs: 'vm'
+  controller: TimeInfoController
 };
 export default TimeInfoComponent;

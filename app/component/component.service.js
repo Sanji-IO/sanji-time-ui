@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const $inject = ['$q', 'rest', 'exception', 'pathToRegexp', '$filter', 'logger', 'moment'];
 const config = require('./component.resource.json');
 class TimeService {
@@ -19,18 +21,21 @@ class TimeService {
   }
 
   _transform(data) {
-    const results = data.timezone.split(',');
-    const tz = results[0];
-    const dst = parseInt(results[1], 10);
-    const duration = parseFloat(tz.replace(':', '.'));
-
     return {
       digitalTime: this.moment(data.time).valueOf(),
-      gmtOffset: duration + dst,
       content: data,
       formOptions: {},
       fields: config.fields
     };
+  }
+
+  _transformZone(data) {
+    return _.map(data, item => {
+      return {
+        label: item.name,
+        value: item.name
+      };
+    });
   }
 
   setResponseMsg(message) {
@@ -40,9 +45,29 @@ class TimeService {
   }
 
   get() {
+    return this.$q.all([
+      this.getTime(),
+      this.getZone()
+    ])
+    .then(([time, zones]) => {
+      time.fields[0].templateOptions.options = zones;
+      return this.data = time;
+    });
+  }
+
+  getTime() {
     const toPath = this.pathToRegexp.compile(config.get.url);
     return this.rest.get(toPath(), this.restConfig)
-    .then(res => this.data = this._transform(res.data))
+    .then(res => this._transform(res.data))
+    .catch(err => {
+      this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
+      return this.$q.reject();
+    });
+  }
+
+  getZone() {
+    return this.rest.get('/system/zoneinfo', this.restConfig)
+    .then(res => this._transformZone(res.data.zone))
     .catch(err => {
       this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
       return this.$q.reject();

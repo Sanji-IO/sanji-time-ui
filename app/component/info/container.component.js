@@ -1,8 +1,7 @@
 import TimeInfoContainerController from './container.controller';
 
 const TimeInfoContainerComponent = {
-  template: `<sanji-time-info data="vm.data"></sanji-time-info>`,
+  template: `<sanji-time-info data="$ctrl.data"></sanji-time-info>`,
   controller: TimeInfoContainerController,
-  controllerAs: 'vm'
 };
 export default TimeInfoContainerComponent;
