@@ -30,7 +30,13 @@ class TimeService {
   }
 
   _transformZone(data) {
-    return _.map(data, item => {
+    const sortData = data.sort((a, b) => {
+      //compare two values
+      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+      return 0;
+    });
+    return _.map(sortData, item => {
       return {
         label: item.name,
         value: item.name
