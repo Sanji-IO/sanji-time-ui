@@ -32,8 +32,8 @@
   "devDependencies": {
     "angular-mocks": "~1.5.0",
     "sanji-openapi-mock": "github:sanji-io/sanji-openapi-mockserver",
-    "sanji-common-devs-ui": "~1.0.2",
-    "semantic-release": "^4.3.5"
+    "sanji-common-devs-ui": "~1.0.4",
+    "semantic-release": "^6.3.2"
   },
   "repository": {
     "type": "git",
@@ -52,6 +52,6 @@
   },
   "dependencies": {
     "angular-clock": "~0.5.1",
-    "sanji-core-ui": "~1.17.0"
+    "sanji-core-ui": "~1.17.17"
   }
 }
