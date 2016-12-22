@@ -7,7 +7,7 @@ import angular from 'angular';
 import {sjCore} from 'sanji-core-ui';
 import {sjTime} from './component';
 
-const app = angular.module('webapp', [sjTime, sjCore]);
+const app = angular.module('webapp', [sjCore, sjTime]);
 class AppController {
   constructor($translate, LANG_KEYS, auth) {
     this.$translate = $translate;

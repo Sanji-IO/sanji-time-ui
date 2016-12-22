@@ -1,7 +1,6 @@
 import 'angular-clock.css';
 
 import angular from 'angular';
-import {sjCore} from 'sanji-core-ui';
 import 'angular-clock';
 
 import {sjTimeInfo} from './info';
@@ -12,7 +11,6 @@ import TimeService from './component.service';
 import TimeWindowComponent from './window.component';
 
 const sjTime = angular.module('sanji.time', [
-  sjCore,
   'ds.clock',
   sjTimeInfo,
   sjTimeForm

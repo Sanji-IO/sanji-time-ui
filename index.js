@@ -1,3 +1,3 @@
-import {sjTime} from './app/component';
+import {sjTime} from './src/component';
 
 export {sjTime};

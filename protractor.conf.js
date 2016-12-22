@@ -1,8 +1,6 @@
-'use strict';
-
 require('babel-core/register')({
-  presets: ['es2015-webpack'],
-  plugins: ['transform-runtime', 'transform-es2015-modules-commonjs'],
+  presets: ['es2015'],
+  plugins: ['lodash'],
   only: 'step'
 });
 

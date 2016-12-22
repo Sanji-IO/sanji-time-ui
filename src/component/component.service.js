@@ -7,7 +7,7 @@ class TimeService {
     TimeService.$inject.forEach((item, index) => this[item] = injects[index]);
     this.data = {};
     this.restConfig = {
-      basePath: (__DEV__) ? __BASE_PATH__ : undefined
+      basePath: (process.env.NODE_ENV === 'development') ? __BASE_PATH__ : undefined
     };
     this.message = {
       read: {
