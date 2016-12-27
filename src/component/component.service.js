@@ -1,11 +1,8 @@
-import _ from 'lodash';
-
 const $inject = ['$q', 'rest', 'exception', 'pathToRegexp', '$filter', 'logger', 'moment'];
 const config = require('./component.resource.json');
 class TimeService {
   constructor(...injects) {
     TimeService.$inject.forEach((item, index) => this[item] = injects[index]);
-    this.data = {};
     this.restConfig = {
       basePath: (process.env.NODE_ENV === 'development') ? __BASE_PATH__ : undefined
     };
@@ -36,7 +33,7 @@ class TimeService {
       if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
       return 0;
     });
-    return _.map(sortData, item => {
+    return sortData.map(item => {
       return {
         label: item.name,
         value: item.name
@@ -57,7 +54,7 @@ class TimeService {
     ])
     .then(([time, zones]) => {
       time.fields[0].templateOptions.options = zones;
-      return this.data = time;
+      return time;
     });
   }
 

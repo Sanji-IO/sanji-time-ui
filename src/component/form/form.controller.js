@@ -5,7 +5,9 @@ class TimeFormController {
   }
 
   save(data) {
-    this.submitCallback({data: data});
+    this.submitCallback({
+      $event: {data: data}
+    });
   }
 }
 TimeFormController.$inject = $inject;

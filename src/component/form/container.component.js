@@ -1,8 +1,7 @@
 import TimeFormContainerController from './container.controller';
 
 const TimeFormContainerComponent = {
-  template: `<sanji-time-form data="vm.data" on-submit="vm.onSave(data)"></sanji-time-form>`,
-  controller: TimeFormContainerController,
-  controllerAs: 'vm'
+  template: `<sanji-time-form data="$ctrl.data" on-submit="$ctrl.onSave($event)"></sanji-time-form>`,
+  controller: TimeFormContainerController
 };
 export default TimeFormContainerComponent;

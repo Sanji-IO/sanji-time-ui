@@ -6,7 +6,6 @@ const TimeFormComponent = {
     submitCallback: '&onSubmit'
   },
   templateUrl: 'sanji-time-form.tpl.html',
-  controller: TimeFormController,
-  controllerAs: 'vm'
+  controller: TimeFormController
 };
 export default TimeFormComponent;

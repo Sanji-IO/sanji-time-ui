@@ -8,4 +8,4 @@ const sjTimeInfo = angular.module('sanji.time.info', [])
   .component('sanjiTimeInfoContainer', TimeInfoContainerComponent)
   .component('sanjiTimeInfo', TimeInfoComponent)
   .name;
-export {sjTimeInfo};
+export { sjTimeInfo };

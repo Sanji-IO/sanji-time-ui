@@ -8,4 +8,4 @@ const sjTimeForm = angular.module('sanji.time.form', [])
   .component('sanjiTimeFormContainer', TimeFormContainerComponent)
   .component('sanjiTimeForm', TimeFormComponent)
   .name;
-export {sjTimeForm};
+export { sjTimeForm };
