@@ -10,7 +10,7 @@ const TimeWindowComponent = {
                 icon="info">
                 <sanji-time-info-container></sanji-time-info-container>
               </sanji-window-state>
-              <sanji-window-state ng-if="::$ctrl.isAuthorized(['superadmin', 'admin'])"
+              <sanji-window-state ng-if="::$ctrl.isAuthorized(['root', 'admin'])"
                 state-name="sanji-form"
                 link-name="{{'TIME_FORM_SETTING' | translate}}"
                 icon="settings">
