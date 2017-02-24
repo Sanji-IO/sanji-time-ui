@@ -1,7 +1,7 @@
 {
   "TIME": "Time",
-  "TIME_WINDOW_INFO": "Information",
-  "TIME_FORM_SETTING": "Setting",
+  "TIME_WINDOW_INFO": "Status",
+  "TIME_FORM_SETTING": "Settings",
   "TIME_FORM_LABEL_TIMEZONE": "Time Zone",
   "INTERNATIONAL_DATE_LINE_WEST": "(-12:00) Internation Date Line West",
   "MIDWAY_ISLAND_SAMOA": "(-11:00) Midway Island, Samoa",
@@ -60,8 +60,8 @@
   "TIME_FORM_LABEL_TIME_SERVER": "Time Server",
   "TIME_FORM_LABEL_TIME_INTERVAL": "Time Interval",
   "TIME_FORM_SAVE": "Save",
-  "TIME_FORM_SAVE_SUCCESS": "Data update successful",
+  "TIME_FORM_SAVE_SUCCESS": "Time data has been updated!",
   "TIME_INFO_SYNCHRONIZATION": "Synchronization Mode",
-  "TIME_INFO_SEC": "sec.",
+  "TIME_INFO_SEC": "sec",
   "TIME_INFO_DATE": "Date"
 }
