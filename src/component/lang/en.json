@@ -2,7 +2,7 @@
   "TIME": "Time",
   "TIME_WINDOW_INFO": "Status",
   "TIME_FORM_SETTING": "Settings",
-  "TIME_FORM_LABEL_TIMEZONE": "Time Zone",
+  "TIME_FORM_LABEL_TIMEZONE": "Time zone",
   "INTERNATIONAL_DATE_LINE_WEST": "(-12:00) Internation Date Line West",
   "MIDWAY_ISLAND_SAMOA": "(-11:00) Midway Island, Samoa",
   "HAWAII": "(-10:00) Hawaii",
@@ -57,11 +57,11 @@
   "NUKUALOFA": "(+13:00) Nuku'alofa",
   "TIME_FORM_LABEL_TIME_MANUAL": "Manual",
   "TIME_FORM_LABEL_TIME_AUTO": "Auto",
-  "TIME_FORM_LABEL_TIME_SERVER": "Time Server",
-  "TIME_FORM_LABEL_TIME_INTERVAL": "Time Interval",
+  "TIME_FORM_LABEL_TIME_SERVER": "Time server",
+  "TIME_FORM_LABEL_TIME_INTERVAL": "Time interval",
   "TIME_FORM_SAVE": "Save",
   "TIME_FORM_SAVE_SUCCESS": "Time data has been updated!",
-  "TIME_INFO_SYNCHRONIZATION": "Synchronization Mode",
+  "TIME_INFO_SYNCHRONIZATION": "Synchronization mode",
   "TIME_INFO_SEC": "sec",
   "TIME_INFO_DATE": "Date"
 }
