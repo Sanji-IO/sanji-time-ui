@@ -4,7 +4,7 @@ class TimeService {
   constructor(...injects) {
     TimeService.$inject.forEach((item, index) => this[item] = injects[index]);
     this.restConfig = {
-      basePath: (process.env.NODE_ENV === 'development') ? __BASE_PATH__ : undefined
+      basePath: process.env.NODE_ENV === 'development' ? __BASE_PATH__ : undefined
     };
     this.message = {
       read: {
@@ -48,11 +48,7 @@ class TimeService {
   }
 
   get() {
-    return this.$q.all([
-      this.getTime(),
-      this.getZone()
-    ])
-    .then(([time, zones]) => {
+    return this.$q.all([this.getTime(), this.getZone()]).then(([time, zones]) => {
       time.fields[0].templateOptions.options = zones;
       return time;
     });
@@ -60,35 +56,35 @@ class TimeService {
 
   getTime() {
     const toPath = this.pathToRegexp.compile(config.get.url);
-    return this.rest.get(toPath(), this.restConfig)
-    .then(res => this._transform(res.data))
-    .catch(err => {
+    return this.rest.get(toPath(), this.restConfig).then(res => this._transform(res.data)).catch(err => {
       this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
       return this.$q.reject();
     });
   }
 
   getZone() {
-    return this.rest.get('/system/zoneinfo', this.restConfig)
-    .then(res => this._transformZone(res.data.zone))
-    .catch(err => {
-      this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
-      return this.$q.reject();
-    });
+    return this.rest
+      .get('/system/zoneinfo', this.restConfig)
+      .then(res => this._transformZone(res.data.zone))
+      .catch(err => {
+        this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
+        return this.$q.reject();
+      });
   }
 
   update(data) {
     const toPath = this.pathToRegexp.compile(config.put.url);
-    const path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
-    return this.rest.put(path, data.content, data.formOptions.files, this.restConfig)
-    .then(res => {
-      this.logger.success(this.$filter('translate')(this.message.update.success), res.data);
-      return res.data;
-    })
-    .catch(err => {
-      this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
-      return this.$q.reject();
-    });
+    const path = undefined !== data.content.id ? toPath({ id: data.content.id }) : toPath();
+    return this.rest
+      .put(path, data.content, data.formOptions.files, this.restConfig)
+      .then(res => {
+        this.logger.success(this.$filter('translate')(this.message.update.success), res.data);
+        return this._transform(res.data);
+      })
+      .catch(err => {
+        this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
+        return this.$q.reject();
+      });
   }
 }
 TimeService.$inject = $inject;
