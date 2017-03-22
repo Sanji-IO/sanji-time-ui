@@ -49,7 +49,7 @@ class TimeService {
 
   get() {
     return this.$q.all([this.getTime(), this.getZone()]).then(([time, zones]) => {
-      time.fields[0].templateOptions.options = zones;
+      time.fields[1].templateOptions.options = zones;
       return time;
     });
   }

@@ -9,6 +9,13 @@
   },
   "fields": [
     {
+      "key": "ntp.enable",
+      "type": "switch",
+      "templateOptions": {
+        "label": "TIME_INFO_SYNCHRONIZATION"
+      }
+    },
+    {
       "key": "timezone",
       "type": "select",
       "templateOptions": {
@@ -224,14 +231,8 @@
             "value": "+13:00,0"
           }
         ]
-      }
-    },
-    {
-      "key": "ntp.enable",
-      "type": "switch",
-      "templateOptions": {
-        "label": "TIME_INFO_SYNCHRONIZATION"
-      }
+      },
+      "hideExpression": "!!model.ntp.enable"
     },
     {
       "key": "time",
@@ -260,4 +261,3 @@
     }
   ]
 }
-
