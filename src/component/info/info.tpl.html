@@ -1,7 +1,7 @@
 <script type ="text/ng-template" id="sanji-time-info.tpl.html">
   <div ng-if="undefined!==$ctrl.data.digitalTime" layout layout-align="center center">
     <div flex="50">
-      <ds-widget-clock start-time="$ctrl.data.digitalTime" gmt-offset="0"></ds-widget-clock>
+      <ds-widget-clock start-time="$ctrl.data.digitalTime" gmt-offset="$ctrl.data.gmtOffset"></ds-widget-clock>
     </div>
   </div>
   <md-list>

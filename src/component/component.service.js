@@ -19,6 +19,7 @@ class TimeService {
 
   _transform(data) {
     return {
+      gmtOffset: (this.moment.parseZone(data.time).utcOffset() / 60).toString(),
       digitalTime: this.moment(data.time).valueOf(),
       content: data,
       formOptions: {},
