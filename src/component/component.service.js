@@ -15,11 +15,22 @@ class TimeService {
         error: '[TimeService] Update data error.'
       }
     };
+    this.zone;
   }
 
-  _transform(data) {
+  _getGmtOffset(data, zone) {
+    const result = zone.originData.find(item => item.name === data.timezone);
+    if (!result) {
+      throw new Error('Can not find timezone offset');
+    }
+    const hour = parseInt(result.offset.substring(0, 3), 10);
+    const minuteToHour = parseInt(result.offset.substring(3), 10) / 60;
+    return hour + minuteToHour;
+  }
+
+  _transform(data, zone) {
     return {
-      gmtOffset: (this.moment.parseZone(data.time).utcOffset() / 60).toString(),
+      gmtOffset: this._getGmtOffset(data, zone).toString(),
       digitalTime: this.moment(data.time).valueOf(),
       content: data,
       formOptions: {},
@@ -36,7 +47,7 @@ class TimeService {
     });
     return sortData.map(item => {
       return {
-        label: item.name,
+        label: ` (${item.offset}) ${item.name}`,
         value: item.name
       };
     });
@@ -49,15 +60,20 @@ class TimeService {
   }
 
   get() {
-    return this.$q.all([this.getTime(), this.getZone()]).then(([time, zones]) => {
-      time.fields[1].templateOptions.options = zones;
-      return time;
-    });
+    return this.getZone()
+      .then(zone => {
+        this.zone = zone;
+        return this.getTime(zone);
+      })
+      .then(time => {
+        time.fields[1].templateOptions.options = this.zone.list;
+        return time;
+      });
   }
 
-  getTime() {
+  getTime(zone) {
     const toPath = this.pathToRegexp.compile(config.get.url);
-    return this.rest.get(toPath(), this.restConfig).then(res => this._transform(res.data)).catch(err => {
+    return this.rest.get(toPath(), this.restConfig).then(res => this._transform(res.data, zone)).catch(err => {
       this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
       return this.$q.reject();
     });
@@ -66,7 +82,12 @@ class TimeService {
   getZone() {
     return this.rest
       .get('/system/zoneinfo', this.restConfig)
-      .then(res => this._transformZone(res.data.zone))
+      .then(res => {
+        return {
+          list: this._transformZone(res.data.zone),
+          originData: res.data.zone
+        };
+      })
       .catch(err => {
         this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
         return this.$q.reject();
@@ -80,7 +101,7 @@ class TimeService {
       .put(path, data.content, data.formOptions.files, this.restConfig)
       .then(res => {
         this.logger.success(this.$filter('translate')(this.message.update.success), res.data);
-        return this._transform(res.data);
+        return this._transform(res.data, this.zone);
       })
       .catch(err => {
         this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
