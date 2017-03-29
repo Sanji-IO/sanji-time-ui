@@ -53,7 +53,7 @@ class TimeService {
     return data
       .map(item => {
         return {
-          label: ` (${item.offset}) ${item.name}`,
+          label: `(${item.offset}) ${item.name}`,
           value: item.name
         };
       })
@@ -109,7 +109,8 @@ class TimeService {
   update(data) {
     const toPath = this.pathToRegexp.compile(config.put.url);
     const path = undefined !== data.content.id ? toPath({ id: data.content.id }) : toPath();
-    const payload = Object.assign({}, data.content, { time: this._getTzOffsetTime(data.content, this.zone) });
+    const utc = this.moment(data.content.time).utc();
+    const payload = Object.assign({}, data.content, { time: utc.toISOString() });
     return this.rest
       .put(path, payload, data.formOptions.files, this.restConfig)
       .then(res => {
