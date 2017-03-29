@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV;
 const BASE_PATH = process.env.BASE_PATH;
+const API_TOKEN = process.env.API_TOKEN;
 const nodeRoot = path.join(__dirname, 'node_modules');
 const appRoot = path.join(__dirname, 'src');
 const config = {
@@ -27,16 +28,21 @@ const config = {
       { test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/, enforce: 'pre' },
       { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
       { test: /\.json$/, use: 'json-loader', exclude: /node_modules/ },
-      { test: /\.html$/, use: 'ng-cache-loader?prefix=[dir]/[dir]', exclude: [/node_modules/, path.join(__dirname, '/src/index.html')] }
-    ],
+      {
+        test: /\.html$/,
+        use: 'ng-cache-loader?prefix=[dir]/[dir]',
+        exclude: [/node_modules/, path.join(__dirname, '/src/index.html')]
+      }
+    ]
   },
   plugins: [
     new ProgressBarPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify(NODE_ENV || 'development')
+        NODE_ENV: JSON.stringify(NODE_ENV || 'development')
       },
-      __BASE_PATH__: JSON.stringify(BASE_PATH) || '"http://localhost:8000"'
+      __BASE_PATH__: JSON.stringify(BASE_PATH) || '"http://localhost:8000"',
+      __API_TOKEN__: JSON.stringify(API_TOKEN) || '""'
     })
   ]
 };

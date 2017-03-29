@@ -6,6 +6,11 @@ class TimeService {
     this.restConfig = {
       basePath: process.env.NODE_ENV === 'development' ? __BASE_PATH__ : undefined
     };
+    if (process.env.NODE_ENV === 'development') {
+      this.restConfig.headers = {
+        'mx-api-token': __API_TOKEN__
+      };
+    }
     this.message = {
       read: {
         error: '[TimeService] Get data error.'
@@ -28,29 +33,36 @@ class TimeService {
     return hour + minuteToHour;
   }
 
+  _getTzOffsetTime(data, zone) {
+    const now = new Date(data.time);
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    return new Date(utc + 3600000 * this._getGmtOffset(data, zone));
+  }
+
   _transform(data, zone) {
     return {
       gmtOffset: this._getGmtOffset(data, zone).toString(),
       digitalTime: this.moment(data.time).valueOf(),
-      content: data,
+      content: Object.assign({}, data, { time: this._getTzOffsetTime(data, zone) }),
       formOptions: {},
       fields: config.fields
     };
   }
 
   _transformZone(data) {
-    const sortData = data.sort((a, b) => {
-      //compare two values
-      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-      return 0;
-    });
-    return sortData.map(item => {
-      return {
-        label: ` (${item.offset}) ${item.name}`,
-        value: item.name
-      };
-    });
+    return data
+      .map(item => {
+        return {
+          label: ` (${item.offset}) ${item.name}`,
+          value: item.name
+        };
+      })
+      .sort((a, b) => {
+        //compare two values
+        if (a.label.toLowerCase() < b.label.toLowerCase()) return -1;
+        if (a.label.toLowerCase() > b.label.toLowerCase()) return 1;
+        return 0;
+      });
   }
 
   setResponseMsg(message) {
@@ -97,8 +109,9 @@ class TimeService {
   update(data) {
     const toPath = this.pathToRegexp.compile(config.put.url);
     const path = undefined !== data.content.id ? toPath({ id: data.content.id }) : toPath();
+    const payload = Object.assign({}, data.content, { time: this._getTzOffsetTime(data.content, this.zone) });
     return this.rest
-      .put(path, data.content, data.formOptions.files, this.restConfig)
+      .put(path, payload, data.formOptions.files, this.restConfig)
       .then(res => {
         this.logger.success(this.$filter('translate')(this.message.update.success), res.data);
         return this._transform(res.data, this.zone);
