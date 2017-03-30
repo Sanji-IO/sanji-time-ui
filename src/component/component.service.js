@@ -1,3 +1,5 @@
+import { cloneDeep } from 'lodash/fp';
+
 const $inject = ['$q', 'rest', 'exception', 'pathToRegexp', '$filter', 'logger', 'moment'];
 const config = require('./component.resource.json');
 class TimeService {
@@ -23,8 +25,8 @@ class TimeService {
     this.zone;
   }
 
-  _getGmtOffset(data, zone) {
-    const result = zone.originData.find(item => item.name === data.timezone);
+  getGmtOffset(tz, zone) {
+    const result = zone.originData.find(item => item.name === tz);
     if (!result) {
       throw new Error('Can not find timezone offset');
     }
@@ -36,13 +38,13 @@ class TimeService {
   _getTzOffsetTime(data, zone) {
     const now = new Date(data.time);
     const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-    return new Date(utc + 3600000 * this._getGmtOffset(data, zone));
+    return new Date(utc + 3600000 * this.getGmtOffset(data.timezone, zone));
   }
 
   _transform(data, zone) {
     return {
-      gmtOffset: this._getGmtOffset(data, zone).toString(),
-      digitalTime: this.moment(data.time).valueOf(),
+      gmtOffset: this.getGmtOffset(data.timezone, zone).toString(),
+      digitalTime: this.moment(this._getTzOffsetTime(data, zone)).valueOf(),
       content: Object.assign({}, data, { time: this._getTzOffsetTime(data, zone) }),
       formOptions: {},
       fields: config.fields
@@ -71,6 +73,12 @@ class TimeService {
     }
   }
 
+  onTzChange(currentTime, newVal, oldVal) {
+    const utc = currentTime.getTime() - this.getGmtOffset(oldVal, this.zone) * 3600000;
+    const offset = new Date(utc + 3600000 * this.getGmtOffset(newVal, this.zone));
+    return offset;
+  }
+
   get() {
     return this.getZone()
       .then(zone => {
@@ -78,6 +86,7 @@ class TimeService {
         return this.getTime(zone);
       })
       .then(time => {
+        this.originData = cloneDeep(time);
         time.fields[1].templateOptions.options = this.zone.list;
         return time;
       });
@@ -109,7 +118,9 @@ class TimeService {
   update(data) {
     const toPath = this.pathToRegexp.compile(config.put.url);
     const path = undefined !== data.content.id ? toPath({ id: data.content.id }) : toPath();
-    const utc = this.moment(data.content.time).utc();
+    const tzOffset = data.content.time.getTimezoneOffset() * 60000;
+    const gmtOffset = this.getGmtOffset(data.content.timezone, this.zone) * 3600000;
+    const utc = new Date(data.content.time.getTime() - gmtOffset - tzOffset);
     const payload = Object.assign({}, data.content, { time: utc.toISOString() });
     return this.rest
       .put(path, payload, data.formOptions.files, this.restConfig)

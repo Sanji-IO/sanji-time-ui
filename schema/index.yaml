@@ -173,7 +173,7 @@ externalDocs:
           "time": "2015-03-26T16:27:48.611441Z",
           "timezone": "Asia/Taipei",
           "ntp": {
-            "enable": true,
+            "enable": false,
             "server": "pool.ntp.org",
             "interval": 86400
           }
@@ -199,8 +199,8 @@ externalDocs:
           },
           {
             "cca2": "AF",
-            "name": "Asia/Kabul",
-            "offset": "+0430"
+            "name": "America/New_York",
+            "offset": "-0400"
           }
         ],
         "iso3166": [

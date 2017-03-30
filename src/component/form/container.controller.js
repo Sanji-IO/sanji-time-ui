@@ -1,4 +1,4 @@
-const $inject = ['$scope', '$ngRedux', 'sanjiWindowService', 'timeAction'];
+const $inject = ['$scope', '$ngRedux', 'sanjiWindowService', 'timeAction', 'timeService'];
 const WINDOW_ID = 'sanji-time-ui';
 class TimeFormContainerController {
   constructor(...injects) {
@@ -9,11 +9,13 @@ class TimeFormContainerController {
     this.sanjiWindowMgr = this.sanjiWindowService.get(WINDOW_ID);
     this.unhandler = this.$scope.$on('sj:window:refresh', this.onRefresh.bind(this));
     this.unsubscribe = this.$ngRedux.connect(this.mapStateToThis, this.timeAction)(this);
+    this.unTzHandler = this.$scope.$watch('$ctrl.data.content.timezone', this.onTzChange.bind(this));
     this.getTime();
   }
 
   $onDestroy() {
     this.unhandler();
+    this.unTzHandler();
     this.unsubscribe();
   }
 
@@ -23,9 +25,15 @@ class TimeFormContainerController {
     };
   }
 
+  onTzChange(newVal, oldVal) {
+    if (newVal !== oldVal) {
+      this.data.content.time = this.timeService.onTzChange(this.data.content.time, newVal, oldVal);
+    }
+  }
+
   onRefresh(event, args) {
     if (args.id === WINDOW_ID) {
-      this.sanjiWindowMgr.promise = this.getTime({force: true});
+      this.sanjiWindowMgr.promise = this.getTime({ force: true });
     }
   }
 
