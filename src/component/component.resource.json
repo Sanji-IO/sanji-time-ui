@@ -231,8 +231,7 @@
             "value": "+13:00,0"
           }
         ]
-      },
-      "hideExpression": "!!model.ntp.enable"
+      }
     },
     {
       "key": "time",
