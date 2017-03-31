@@ -30,15 +30,16 @@ class TimeService {
     if (!result) {
       throw new Error('Can not find timezone offset');
     }
-    const hour = parseInt(result.offset.substring(0, 3), 10);
-    const minuteToHour = parseInt(result.offset.substring(3), 10) / 60;
-    return hour + minuteToHour;
+    const sign = result.offset.substring(0, 1);
+    const hourToMinute = parseInt(sign+result.offset.substring(1, 3), 10) * 60;
+    const minute = parseInt(sign+result.offset.substring(3), 10);
+    return hourToMinute + minute;
   }
 
   _getTzOffsetTime(data, zone) {
     const now = new Date(data.time);
     const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-    return new Date(utc + 3600000 * this.getGmtOffset(data.timezone, zone));
+    return new Date(utc + 60000 * this.getGmtOffset(data.timezone, zone));
   }
 
   _transform(data, zone) {
@@ -74,8 +75,8 @@ class TimeService {
   }
 
   onTzChange(currentTime, newVal, oldVal) {
-    const utc = currentTime.getTime() - this.getGmtOffset(oldVal, this.zone) * 3600000;
-    const offset = new Date(utc + 3600000 * this.getGmtOffset(newVal, this.zone));
+    const utc = currentTime.getTime() - this.getGmtOffset(oldVal, this.zone) * 60000;
+    const offset = new Date(utc + 60000 * this.getGmtOffset(newVal, this.zone));
     return offset;
   }
 
@@ -119,7 +120,7 @@ class TimeService {
     const toPath = this.pathToRegexp.compile(config.put.url);
     const path = undefined !== data.content.id ? toPath({ id: data.content.id }) : toPath();
     const tzOffset = data.content.time.getTimezoneOffset() * 60000;
-    const gmtOffset = this.getGmtOffset(data.content.timezone, this.zone) * 3600000;
+    const gmtOffset = this.getGmtOffset(data.content.timezone, this.zone) * 60000;
     const utc = new Date(data.content.time.getTime() - gmtOffset - tzOffset);
     const payload = Object.assign({}, data.content, { time: utc.toISOString() });
     return this.rest
