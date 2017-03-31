@@ -44,7 +44,6 @@ class TimeService {
 
   _transform(data, zone) {
     return {
-      gmtOffset: this.getGmtOffset(data.timezone, zone).toString(),
       digitalTime: this.moment(this._getTzOffsetTime(data, zone)).valueOf(),
       content: Object.assign({}, data, { time: this._getTzOffsetTime(data, zone) }),
       formOptions: {},
