@@ -42,10 +42,15 @@ class TimeService {
     return new Date(utc + 60000 * this.getGmtOffset(data.timezone, zone));
   }
 
+  _getMomentTime(data, zone) {
+    const now = new Date(data.time);
+    return new Date(now.getTime() + 60000 * this.getGmtOffset(data.timezone, zone));
+  }
+
   _transform(data, zone) {
     return {
-      gmtOffset: this.getGmtOffset(data.timezone, zone).toString(),
-      digitalTime: this.moment(this._getTzOffsetTime(data, zone)).valueOf(),
+      gmtOffset: 0,
+      digitalTime: this.moment(this._getMomentTime(data, zone)).valueOf(),
       content: Object.assign({}, data, { time: this._getTzOffsetTime(data, zone) }),
       formOptions: {},
       fields: config.fields
