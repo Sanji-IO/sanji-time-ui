@@ -30,8 +30,9 @@ class TimeService {
     if (!result) {
       throw new Error('Can not find timezone offset');
     }
-    const hour = parseInt(result.offset.substring(0, 3), 10);
-    const minuteToHour = parseInt(result.offset.substring(3), 10) / 60;
+    const sign = result.offset.substring(0, 1);
+    const hour = parseInt(sign + result.offset.substring(1, 3), 10);
+    const minuteToHour = parseInt(sign + result.offset.substring(3), 10) / 60;
     return hour + minuteToHour;
   }
 
