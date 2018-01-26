@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const bourbon = require('node-bourbon').includePaths;
 const config = require('./webpack.config.js');
@@ -12,36 +11,34 @@ config.entry = {
 config.output.filename = 'sanji-time-ui.js';
 config.output.libraryTarget = 'umd';
 config.output.library = 'sjTime';
-config.externals = [
-  'angular',
-  'sanji-core-ui'
-];
+config.externals = ['angular', 'sanji-core-ui'];
 
 config.module.rules = [
-  {test: /\.js$/, use: 'ng-annotate-loader', exclude: /(node_modules)/, enforce: 'post'},
   {
     test: /\.scss$/,
     loader: ExtractTextPlugin.extract({
       fallback: 'style-loader',
-      use: 'css-loader!postcss-loader!sass-loader?includePaths[]=' + bourbon
+      use: [
+        { loader: 'css-loader', options: { importLoaders: 1, minimize: true } },
+        'postcss-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: bourbon
+          }
+        }
+      ]
     })
   },
-  {test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader'}
+  {
+    test: /\.css$/,
+    use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader']
+  }
 ].concat(config.module.rules);
 
 config.plugins.push(
   new ExtractTextPlugin('sanji-time-ui.css'),
-  new LodashModuleReplacementPlugin,
-  new webpack.LoaderOptionsPlugin({
-    minimize: true,
-    debug: false,
-    quiet: true,
-    options:{
-      postcss: [
-        autoprefixer({ browsers: ['last 2 versions'] })
-      ]
-    }
-  }),
+  new LodashModuleReplacementPlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       screw_ie8: true,

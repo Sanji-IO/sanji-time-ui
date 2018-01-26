@@ -2,7 +2,7 @@ const $inject = ['$scope', '$ngRedux', 'sanjiWindowService', 'timeAction'];
 const WINDOW_ID = 'sanji-time-ui';
 class TimeInfoContainerController {
   constructor(...injects) {
-    TimeInfoContainerController.$inject.forEach((item, index) => this[item] = injects[index]);
+    TimeInfoContainerController.$inject.forEach((item, index) => (this[item] = injects[index]));
   }
 
   $onInit() {

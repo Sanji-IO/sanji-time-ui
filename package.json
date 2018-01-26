@@ -13,27 +13,28 @@
     }
   },
   "scripts": {
-    "validate": "npm run test:once && npm run check-coverage",
-    "start": "npm run mock:serve && npm run dev:serve",
+    "validate": "yarn test:once && yarn check-coverage",
+    "start": "yarn mock:serve && yarn dev:serve",
     "dev:serve": "cross-env NODE_ENV=development node server/dev-server.js && kill $npm_package_config_mockserver",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test karma start",
-    "test:e2e": "npm run mock:serve && npm run protractor",
+    "test:e2e": "yarn mock:serve && yarn protractor",
     "test:once": "cross-env BABEL_ENV=test karma start",
     "protractor": "protractor protractor.conf.js && kill $npm_package_config_mockserver",
     "mock:serve": "mockserver -I schema & npm config set sanji-time-ui:mockserver $!",
     "prebuild": "rimraf dist && mkdir dist",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.build.js --display-modules",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.build.js",
     "commit": "git-cz",
     "check-coverage": "istanbul check-coverage --statements 75 --branches 75 --functions 75 --lines 75",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "post-install": "webdirver-manager update"
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
-    "angular-mocks": "~1.5.0",
+    "angular-mocks": "~1.6.8",
     "sanji-openapi-mock": "github:sanji-io/sanji-openapi-mockserver",
-    "sanji-common-devs-ui": "~1.0.4",
-    "semantic-release": "^6.3.6"
+    "sanji-common-devs-ui": "^7.0.0",
+    "travis-deploy-once": "^4.3.3",
+    "semantic-release": "^12.2.5"
   },
   "repository": {
     "type": "git",
@@ -42,13 +43,11 @@
   "bugs": {
     "url": "https://github.com/Sanji-Io/sanji-time-ui/issues"
   },
-  "keywords": [
-    "sanji"
-  ],
+  "keywords": ["sanji"],
   "license": "MIT",
   "homepage": "https://github.com/Sanji-IO/sanji-time-ui",
   "dependencies": {
-    "angular-clock": "^0.5.1",
-    "sanji-core-ui": "^3.1.2"
+    "angular-clock": "^0.7.0",
+    "sanji-core-ui": "^4.0.0"
   }
 }

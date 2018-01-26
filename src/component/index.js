@@ -11,14 +11,10 @@ import { TimeAction, time, GET_TIME, UPDATE_TIME } from './component.state';
 import TimeService from './component.service';
 import TimeWindowComponent from './window.component';
 
-const sjTime = angular.module('sanji.time', [
-  'ds.clock',
-  sjTimeInfo,
-  sjTimeForm
-])
+const sjTime = angular
+  .module('sanji.time', ['ds.clock', sjTimeInfo, sjTimeForm])
   .config(i18nConfig)
   .factory('timeAction', TimeAction)
   .service('timeService', TimeService)
-  .component('sanjiTimeWindow', TimeWindowComponent)
-  .name;
+  .component('sanjiTimeWindow', TimeWindowComponent).name;
 export { sjTime, time, GET_TIME, UPDATE_TIME };

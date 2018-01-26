@@ -4,7 +4,7 @@ const $inject = ['$q', 'rest', 'exception', 'pathToRegexp', '$filter', 'logger',
 const config = require('./component.resource.json');
 class TimeService {
   constructor(...injects) {
-    TimeService.$inject.forEach((item, index) => this[item] = injects[index]);
+    TimeService.$inject.forEach((item, index) => (this[item] = injects[index]));
     this.restConfig = {
       basePath: process.env.NODE_ENV === 'development' ? __BASE_PATH__ : undefined
     };
@@ -94,10 +94,13 @@ class TimeService {
 
   getTime(zone) {
     const toPath = this.pathToRegexp.compile(config.get.url);
-    return this.rest.get(toPath(), this.restConfig).then(res => this._transform(res.data, zone)).catch(err => {
-      this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
-      return this.$q.reject();
-    });
+    return this.rest
+      .get(toPath(), this.restConfig)
+      .then(res => this._transform(res.data, zone))
+      .catch(err => {
+        this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
+        return this.$q.reject();
+      });
   }
 
   getZone() {
